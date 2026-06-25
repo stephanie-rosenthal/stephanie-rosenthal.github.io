@@ -166,13 +166,17 @@ footer{
             title: "AI Ethics Toolkit",
             category: "AI Ethics",
             tags: ["ethics", "bias", "privacy"],
-            grade: "High School"
+            grade: "High School",
+            difficulty: "No prior computer science",
+            link: "test link"
           },
           {
             title: "Prompt Engineering Workshop",
             category: "Prompt Engineering",
             tags: ["prompts", "chatgpt"],
-            grade: "Middle School"
+            grade: "Middle School",
+            difficulty: "Writing skills required",
+            link: "test link2"
           }
         ];
 
@@ -214,9 +218,8 @@ footer{
             
                 cardElement.innerHTML = `
                     <h3>${result.title}</h3>
-                    <p>Category: ${result.category}</p>
-                    <p>Tags: ${result.tags}</p>
                     <p>Grades: ${result.grade}</p>
+                    <p>Link: ${result.link}</p>
                 `;
             
                 container.appendChild(cardElement);
@@ -253,28 +256,48 @@ footer{
 
     <div class="categories">
         <div class="category-card">
-            <h3>🤖 AI Basics</h3>
+            <h3>Teacher Favorites</h3>
+            <p>Some of our teachers' favorite activities.</p>
+        </div>
+        
+        <div class="category-card">
+            <h3>AI Basics</h3>
             <p>Introduction to AI concepts and terminology.</p>
         </div>
 
         <div class="category-card">
-            <h3>📝 Lesson Plans</h3>
+            <h3>No Computer Required</h3>
+            <p>Put the computer away! Paper and pencil only.</p>
+        </div>
+
+        <div class="category-card">
+            <h3>Lesson Plans</h3>
             <p>Ready-to-use classroom activities and projects.</p>
         </div>
 
         <div class="category-card">
-            <h3>💬 Prompt Engineering</h3>
+            <h3>Prompt Basics</h3>
             <p>Teach students how to interact with AI tools.</p>
         </div>
 
         <div class="category-card">
-            <h3>⚖️ AI Ethics</h3>
+            <h3>AI Ethics</h3>
             <p>Responsible use, bias, privacy, and safety topics.</p>
+        </div>
+
+        <div class="category-card">
+            <h3>No Prior CS Knowledge</h3>
+            <p>For students without any computer science background.</p>
+        </div>
+
+        <div class="category-card">
+            <h3>Writing Required</h3>
+            <p>For English, Social Studies, and Humanities courses.</p>
         </div>
     </div>
 
     <h2 class="section-title" style="margin-top:50px;">
-        Featured Teaching Materials
+        Our Teachers' Favorite Materials
     </h2>
 
     <div class="resources">
