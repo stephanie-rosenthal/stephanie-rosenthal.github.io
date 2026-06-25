@@ -147,6 +147,54 @@ footer{
     margin-top:50px;
 }
 </style>
+    <script>
+        const resources = [
+          {
+            title: "AI Ethics Toolkit",
+            category: "AI Ethics",
+            tags: ["ethics", "bias", "privacy"],
+            grade: "High School"
+          },
+          {
+            title: "Prompt Engineering Workshop",
+            category: "Prompt Engineering",
+            tags: ["prompts", "chatgpt"],
+            grade: "Middle School"
+          }
+        ];
+
+        function searchResources() {
+            const query = document
+                .getElementById("searchInput")
+                .value
+                .toLowerCase();
+        
+            const results = resources.filter(resource =>
+                resource.title.toLowerCase().includes(query) ||
+                resource.category.toLowerCase().includes(query) ||
+                resource.tags.some(tag =>
+                    tag.toLowerCase().includes(query)
+                )
+            );
+        
+            displayResults(results);
+        }
+
+        function toggleResults(){
+            let element = document.getElementById("search");
+            let hidden = element.getAttribute("hidden");
+
+            if (hidden) {
+               element.removeAttribute("hidden");
+            } else {
+               element.setAttribute("hidden", "hidden");
+            }
+        }
+
+        function displayResults(results){
+            toggleResults()
+        }
+    </script>
 </head>
 
 <body>
@@ -160,9 +208,14 @@ footer{
 
     <div class="search-box">
         <input type="text" placeholder="Search AI teaching resources...">
-        <button>Search</button>
+        <button onclick="">Search</button>
     </div>
 </header>
+
+    <div class="container" id="search" hidden>
+        <h2 class="section-title">Search Results</h2>
+        <button class="btn" onclick="toggleResults()">Close Results</button>
+    </div>
 
 <div class="container">
 
