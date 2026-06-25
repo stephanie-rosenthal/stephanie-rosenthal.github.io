@@ -139,6 +139,19 @@ header p{
     direction: rtl;
 }
 
+#cardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+}
+
 footer{
     background:#111827;
     color:white;
@@ -192,6 +205,22 @@ footer{
         }
 
         function displayResults(results){
+            const container = document.getElementById("cardContainer");
+            container.innerHTML = "";
+
+            results.forEach(result => {
+                const cardElement = document.createElement("div");
+                cardElement.className = "search-card";
+            
+                cardElement.innerHTML = `
+                    <h3>${card.title}</h3>
+                    <p>Category: ${card.category}</p>
+                    <p>Tags: ${card.tags}</p>
+                    <p>Grades: ${card.grade}</p>
+                `;
+            
+                container.appendChild(cardElement);
+            });
             toggleResults();
         }
     </script>
@@ -215,6 +244,7 @@ footer{
     <div class="container" id="search" hidden>
         <h2 class="section-title">Search Results</h2>
         <button class="btn" onclick="toggleResults();">Close Results</button>
+        <div class="cardContainer" id="card-container"></div>
     </div>
 
 <div class="container">
