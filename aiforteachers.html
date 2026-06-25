@@ -79,7 +79,7 @@ header p{
     background:white;
     padding:25px;
     border-radius:12px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    box-shadow:0 2px 10px rgba(0,0,0,0.8);
     text-align:center;
 }
 
@@ -94,7 +94,7 @@ header p{
     background:white;
     border-radius:12px;
     overflow:hidden;
-    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    box-shadow:0 2px 10px rgba(0,0,0,0.8);
 }
 
 .resource-card img{
@@ -161,24 +161,63 @@ footer{
 }
 </style>
     <script>
+        const TF = "teacher-favorites";
+        const AIB = "ai-basics";
+        const NC = "no-computer";
+        const LP = "lesson-plans";
+        const PB = "prompt-basics";
+        const AIE = "ai-ethics";
+        const NCS = "no-prior-cs";
+        const WR = "writing-req";
+        const all_categories = [TF, AIB, NC, LP, PB, AIE, NCS, WR];
+        const curr_categories = [TF, AIB, NC, LP, PB, AIE, NCS, WR];
         const resources = [
           {
             title: "AI Ethics Toolkit",
-            category: "AI Ethics",
-            tags: ["ethics", "bias", "privacy"],
+            description: "AI Ethics",
+            tags: [AIE, WR, NCS],
             grade: "High School",
             difficulty: "No prior computer science",
             link: "test link"
           },
           {
             title: "Prompt Engineering Workshop",
-            category: "Prompt Engineering",
-            tags: ["prompts", "chatgpt"],
+            description: "Prompt Engineering",
+            tags: [PB, NCS],
             grade: "Middle School",
             difficulty: "Writing skills required",
             link: "test link2"
           }
         ];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadResources();
+        });
+
+        function hasCommonString(array1, array2) {
+            return array1.some(item => array2.includes(item));
+        }
+
+        function loadResources(){
+            container = document.getElementById("resources");
+            container.innerHTML = "";
+            
+            resources.forEach(res => {
+                if (hasCommonString(res.tags, curr_categories)){
+                    const cardElement = document.createElement("div");
+                    cardElement.className = "resource-card";
+                
+                    cardElement.innerHTML = `
+                        <h3>${res.title}</h3>
+                        <p>$(res.description)</p>
+                        <p>Grades: ${res.grade}, Difficulty: ${res.difficulty}</p>
+                        <p>Link: ${res.link}</p>
+                    `;
+                
+                    container.appendChild(cardElement);
+                }
+            });
+        }
 
         function searchResources() {
             const query = document
@@ -188,7 +227,7 @@ footer{
         
             const results = resources.filter(resource =>
                 resource.title.toLowerCase().includes(query) ||
-                resource.category.toLowerCase().includes(query) ||
+                resource.description.toLowerCase().includes(query) ||
                 resource.tags.some(tag =>
                     tag.toLowerCase().includes(query)
                 )
@@ -206,6 +245,21 @@ footer{
             } else {
                element.setAttribute("hidden", "hidden");
             }
+        }
+
+        function toggleCategorySelected(element){
+            var id = element.id;
+
+            if (curr_categories.includes(id)){
+                element.style.boxShadow = "0 2px 10px rgba(0,0,0,0.08)";
+                curr_categories.remove(id);
+            }
+            else{
+                element.style.boxShadow = "0 2px 10px rgba(0,0,0,0.8)";
+                curr_categories.append(id);
+            }
+
+            loadResources();
         }
 
         function displayResults(results){
@@ -238,10 +292,6 @@ footer{
         prompt guides, and curriculum materials with educators worldwide.
     </p>
 
-    <div class="search-box">
-        <input id="searchInput" type="text" placeholder="Search AI teaching resources...">
-        <button onclick="searchResources();">Search</button>
-    </div>
 </header>
 
     <div class="container" id="search" hidden>
@@ -255,80 +305,57 @@ footer{
     <h2 class="section-title">Resource Categories</h2>
 
     <div class="categories">
-        <div class="category-card">
+        <div class="category-card" id="teacher-favorites" onclick="toggleCategorySelected(this)">
             <h3>Teacher Favorites</h3>
             <p>Some of our teachers' favorite activities.</p>
         </div>
         
-        <div class="category-card">
+        <div class="category-card" id="ai-basics">
             <h3>AI Basics</h3>
             <p>Introduction to AI concepts and terminology.</p>
         </div>
 
-        <div class="category-card">
+        <div class="category-card" id="no-computer">
             <h3>No Computer Required</h3>
             <p>Put the computer away! Paper and pencil only.</p>
         </div>
 
-        <div class="category-card">
+        <div class="category-card" id="lesson-plans">
             <h3>Lesson Plans</h3>
             <p>Ready-to-use classroom activities and projects.</p>
         </div>
 
-        <div class="category-card">
+        <div class="category-card" id="prompt-basics">
             <h3>Prompt Basics</h3>
             <p>Teach students how to interact with AI tools.</p>
         </div>
 
-        <div class="category-card">
+        <div class="category-card" id="ai-ethics">
             <h3>AI Ethics</h3>
             <p>Responsible use, bias, privacy, and safety topics.</p>
         </div>
 
-        <div class="category-card">
+        <div class="category-card" id="no-prior-cs">
             <h3>No Prior CS Knowledge</h3>
             <p>For students without any computer science background.</p>
         </div>
 
-        <div class="category-card">
+        <div class="category-card" id="writing-req">
             <h3>Writing Required</h3>
             <p>For English, Social Studies, and Humanities courses.</p>
         </div>
+
+        <div class="search-box">
+        <input id="searchInput" type="text" placeholder="Search AI teaching resources...">
+        <button onclick="searchResources();">Search</button>
+    </div>
     </div>
 
     <h2 class="section-title" style="margin-top:50px;">
-        Our Teachers' Favorite Materials
+        Resources
     </h2>
 
-    <div class="resources">
-
-        <div class="resource-card">
-            <img src="https://via.placeholder.com/400x200" alt="">
-            <div class="resource-content">
-                <h3>AI for Beginners</h3>
-                <p>Slides, worksheets, and discussion questions.</p>
-                <a href="#" class="btn">Download</a>
-            </div>
-        </div>
-
-        <div class="resource-card">
-            <img src="https://via.placeholder.com/400x200" alt="">
-            <div class="resource-content">
-                <h3>Prompt Writing Workshop</h3>
-                <p>Hands-on activities for middle and high school students.</p>
-                <a href="#" class="btn">Download</a>
-            </div>
-        </div>
-
-        <div class="resource-card">
-            <img src="https://via.placeholder.com/400x200" alt="">
-            <div class="resource-content">
-                <h3>AI Ethics Toolkit</h3>
-                <p>Case studies and classroom debate materials.</p>
-                <a href="#" class="btn">Download</a>
-            </div>
-        </div>
-
+    <div class="resources" id="resources">
     </div>
 
     <div class="contact-section">
