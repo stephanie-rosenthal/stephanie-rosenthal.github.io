@@ -55,23 +55,31 @@
         function loadResources(){
             container = document.getElementById("resources");
             container.innerHTML = "";
+
+            query = document
+                .getElementById("searchInput")
+                .value
+                .toLowerCase();
+
+            filtered_resources = resources.filter(resource =>
+                (resource.title.toLowerCase().includes(query) ||
+                resource.description.toLowerCase().includes(query) ||
+                resource.tags.some(tag =>
+                    tag.toLowerCase().includes(query)
+                )) &&
+                resources.tags.some(tag => curr_categories.includes(tag))   
+            );
             
-            resources.forEach(res => {
+            filtered_resources.forEach(res => {
                 if (hasCommonString(res.tags, curr_categories)){
                     const cardElement = document.createElement("div");
-                    /*cardElement.className = "activity-card";
+                    cardElement.className = "activity-card";
                 
-                    cardElement.innerHTML = `
-                        <h3>${res.title}</h3>
-                        <p>${res.description}</p>
-                        <p>Grades: ${res.grade}, Difficulty: ${res.difficulty}</p>
-                        <p>Link: ${res.link}</p>
-                    `;*/
                     cardElement.innerHTML = `
                         <div class="activity-title">${res.title}</div>
                 
                         <div class="activity-meta">
-                            <span class="badge">${res.gradeLevel}</span>
+                            <span class="badge">${res.grade}</span>
                             <span class="badge">${res.difficulty}</span>
                         </div>
                 
@@ -91,20 +99,7 @@
         }
 
         function searchResources() {
-            const query = document
-                .getElementById("searchInput")
-                .value
-                .toLowerCase();
-        
-            const results = resources.filter(resource =>
-                resource.title.toLowerCase().includes(query) ||
-                resource.description.toLowerCase().includes(query) ||
-                resource.tags.some(tag =>
-                    tag.toLowerCase().includes(query)
-                )
-            );
-        
-            displayResults(results);
+            loadResources();
         }
 
         function toggleResults(){
