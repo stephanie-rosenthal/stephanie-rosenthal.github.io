@@ -19,8 +19,8 @@
         const MEET = "meeting";
         const WKSP = "course";
         
-        const all_categories = [TF, AIB, NC, LP, PB, AIE, NCS, WR];
-        var curr_categories = [TF, AIB, NC, LP, PB, AIE, NCS, WR];
+        const all_categories = [TF, AIB, NC, LP, PB, AIE, NCS, WR, BOOK, MEET, WKSP];
+        var curr_categories = [TF, AIB, NC, LP, PB, AIE, NCS, WR, BOOK, MEET, WKSP];
         const resources = [
             {
             title: "AI4K12.org",
@@ -49,7 +49,7 @@
           {
             title: "Demystifying AI Curriculum",
                 description: "Covers the basics from What is AI? to how ChatGPT works for upper high school or early college students.",
-                tags: [AIB, LP],
+                tags: [AIB, LP, WKSP],
                 grade: "High School, College",
                 difficulty: "No prior computer science",
                 link: "https://www.cs.cmu.edu/~15181/"
@@ -65,7 +65,7 @@
             {  
             title: "Educational Advancements in AI Conference",
                 description: "Meeting of teachers, faculty, and other practitioners to discuss activities and research related to teaching AI to students.",
-                tags: [AIB, NC, AIE],
+                tags: [AIB, NC, AIE, MEET],
                 grade: "Professional Meeting",
                 difficulty: "All levels",
             link: "https://eaai-conf.github.io/"
@@ -73,7 +73,7 @@
             {  
             title: "AI: The Magic Box",
                 description: "Workbook for middle school students to learn how AI machine learning works.",
-                tags: [AIB, NC],
+                tags: [AIB, NC, BOOK],
                 grade: "Middle School",
                 difficulty: "No prior computer science",
             link: "https://www.amazon.com/AI-Magic-Box-Artificial-Intelligence/dp/B0DKCR7QPW"
@@ -81,7 +81,7 @@
             {  
             title: "Imagine AI",
                 description: "Exploring AI Ethics through stories and activities.",
-                tags: [NC, AIE, WR],
+                tags: [NC, AIE, WR, BOOK],
                 grade: "Middle School",
                 difficulty: "No prior computer science",
             link: "https://www.colorado.edu/project/imagine-ai/resources"
@@ -89,7 +89,7 @@
             {  
             title: "Moral AI and How We Get There",
                 description: "Book on aspects of ethics, morality, and AI.",
-                tags: [NC, AIE],
+                tags: [NC, AIE, BOOK],
                 grade: "Upper high school, College",
                 difficulty: "All levels",
             link: "https://www.amazon.com/Moral-AI-How-Get-There/dp/0241454751/"
@@ -262,6 +262,21 @@
         <div class="category-card" id="writing-req" onclick="toggleCategorySelected(this)">
             <h3>Writing Required</h3>
             <p>For English, Social Studies, and Humanities courses.</p>
+        </div>
+
+        <div class="category-card" id="book" onclick="toggleCategorySelected(this)">
+            <h3>Books</h3>
+            <p>Books and workbooks for learning about AI.</p>
+        </div>
+
+        <div class="category-card" id="meeting" onclick="toggleCategorySelected(this)">
+            <h3>Meetings</h3>
+            <p>Meetings and conferences on the topic of AI and education.</p>
+        </div>
+
+        <div class="category-card" id="course" onclick="toggleCategorySelected(this)">
+            <h3>Workshops</h3>
+            <p>Courses and workshops for professional development.</p>
         </div>
     </div>
 
