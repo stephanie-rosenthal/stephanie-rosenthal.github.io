@@ -84,9 +84,6 @@
                             View Activity →
                         </a>
                     `;
-
-    container.appendChild(card);
-});
                 
                     container.appendChild(cardElement);
                 }
@@ -168,12 +165,6 @@
 
 </header>
 
-    <div class="container" id="search" hidden>
-        <h2 class="section-title">Search Results</h2>
-        <button class="btn" onclick="toggleResults();">Close Results</button>
-        <div class="searchCardContainer" id="card-container"></div>
-    </div>
-
 <div class="container">
 
     <h2 class="section-title">Resource Categories</h2>
@@ -218,11 +209,11 @@
             <h3>Writing Required</h3>
             <p>For English, Social Studies, and Humanities courses.</p>
         </div>
+    </div>
 
-        <div class="search-box">
+    <div class="search-box">
         <input id="searchInput" type="text" placeholder="Search AI teaching resources...">
         <button onclick="searchResources();">Search</button>
-    </div>
     </div>
 
     <h2 class="section-title" style="margin-top:50px;">
