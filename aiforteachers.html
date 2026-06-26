@@ -170,7 +170,7 @@ footer{
         const NCS = "no-prior-cs";
         const WR = "writing-req";
         const all_categories = [TF, AIB, NC, LP, PB, AIE, NCS, WR];
-        curr_categories = [TF, AIB, NC, LP, PB, AIE, NCS, WR];
+        var curr_categories = [TF, AIB, NC, LP, PB, AIE, NCS, WR];
         const resources = [
           {
             title: "AI Ethics Toolkit",
@@ -252,11 +252,11 @@ footer{
 
             if (curr_categories.includes(id)){
                 element.style.boxShadow = "0 2px 10px rgba(0,0,0,0.08)";
-                curr_categories.remove(id);
+                curr_categories = curr_categories.filter(item => item !== id);
             }
             else{
                 element.style.boxShadow = "0 2px 10px rgba(0,0,0,0.8)";
-                curr_categories.append(id);
+                curr_categories.push(id);
             }
 
             loadResources();
