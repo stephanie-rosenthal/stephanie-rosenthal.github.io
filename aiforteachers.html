@@ -139,7 +139,7 @@ header p{
     direction: rtl;
 }
 
-#cardContainer {
+#searchCardContainer {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -151,6 +151,73 @@ header p{
     border-radius: 8px;
     background: white;
 }
+
+#cardContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.activity-card {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}
+
+.activity-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+.activity-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.badge {
+    background: #e8f0ff;
+    color: #2563eb;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.activity-description {
+    color: #555;
+    line-height: 1.5;
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+
+.activity-link {
+    align-self: flex-start;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.activity-link:hover {
+    background: #1d4ed8;
+}    
 
 footer{
     background:#111827;
@@ -213,14 +280,34 @@ footer{
             resources.forEach(res => {
                 if (hasCommonString(res.tags, curr_categories)){
                     const cardElement = document.createElement("div");
-                    cardElement.className = "resource-card";
+                    /*cardElement.className = "activity-card";
                 
                     cardElement.innerHTML = `
                         <h3>${res.title}</h3>
                         <p>${res.description}</p>
                         <p>Grades: ${res.grade}, Difficulty: ${res.difficulty}</p>
                         <p>Link: ${res.link}</p>
+                    `;*/
+                    cardElement.innerHTML = `
+                        <div class="activity-title">${res.title}</div>
+                
+                        <div class="activity-meta">
+                            <span class="badge">${res.gradeLevel}</span>
+                            <span class="badge">${res.difficulty}</span>
+                        </div>
+                
+                        <div class="activity-description">
+                            ${res.description}
+                        </div>
+                
+                        <a class="activity-link"
+                           href="${res.link}">
+                            View Activity →
+                        </a>
                     `;
+
+    container.appendChild(card);
+});
                 
                     container.appendChild(cardElement);
                 }
@@ -305,7 +392,7 @@ footer{
     <div class="container" id="search" hidden>
         <h2 class="section-title">Search Results</h2>
         <button class="btn" onclick="toggleResults();">Close Results</button>
-        <div class="cardContainer" id="card-container"></div>
+        <div class="searchCardContainer" id="card-container"></div>
     </div>
 
 <div class="container">
