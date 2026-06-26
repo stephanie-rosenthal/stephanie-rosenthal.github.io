@@ -67,7 +67,7 @@
                 resource.tags.some(tag =>
                     tag.toLowerCase().includes(query)
                 )) &&
-                resources.tags.some(tag => curr_categories.includes(tag))   
+                resource.tags.some(tag => curr_categories.includes(tag))   
             );
             
             filtered_resources.forEach(res => {
